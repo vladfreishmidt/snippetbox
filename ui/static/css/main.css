@@ -59,6 +59,7 @@ a {
 a:hover {
     color: #4EB722;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 textarea, input:not([type="submit"]) {
@@ -120,7 +121,7 @@ nav div:last-child a {
 
 nav a.live {
     color: #34495E;
-    cursor: default;
+    cursor: pointer;
 }
 
 nav a.live:hover {
