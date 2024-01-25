@@ -28,8 +28,9 @@ func (app *application) notFound(w http.ResponseWriter) {
 
 func (app *application) newTemplateData(r *http.Request) *templateData {
 	return &templateData{
-		CurrentYear: time.Now().Year(),
-		Flash:       app.sessionsManager.PopString(r.Context(), "flash"),
+		CurrentYear:     time.Now().Year(),
+		Flash:           app.sessionsManager.PopString(r.Context(), "flash"),
+		IsAuthenticated: app.isAuthenticated(r),
 	}
 }
 
@@ -72,4 +73,8 @@ func (app *application) decodePostForm(r *http.Request, dst any) error {
 	}
 
 	return nil
+}
+
+func (app *application) isAuthenticated(r *http.Request) bool {
+	return app.sessionsManager.Exists(r.Context(), "authenticatedUserID")
 }
